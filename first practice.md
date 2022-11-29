@@ -1,1 +1,5 @@
-
+## Launch an EC2 instance using the AWS CLI 
+- I started by installing the AWS CLI on my local computer by downloading the AWS CLI MSI installer for Windows (64-bit) from https://awscli.amazonaws.com/AWSCLIV2.msi, to confirm my installation, I typed `aws --version` in my windows command prompt, where all my subsequent commands got entered. 
+- I created a key pair called 'MyKeyPair' by running `aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > MyKeyPair.pem`. 
+- I also created a security group called 'my-sg', with the description 'my security group', in my default VPC, by running `aws ec2 create-security-group --group-name my-sg --description "My security group" --vpc-id vpc-xxxxxxxx` 
+- Next, I created inbound rules to add my IP address (more like the CIDR block of my router, which I found by running `curl https://checkip.amazonaws.com`) to the security group and also enable SSH, on ports 3389 and  22 respectively, by running `aws ec2 authorize-security-group-ingress --group-id sg-xxxxxx --protocol tcp --port 3389 --cidr x.x.x.x/x` and `aws ec2 authorize-security-group-ingress --group-id sg-xxxxxx --protocol tcp --port 22 --cidr x.x.x.x/x`. 
