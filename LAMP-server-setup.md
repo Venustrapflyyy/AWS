@@ -42,4 +42,4 @@ try {
     die();
 }
 ```
-- When I entered `http://my_ip_address/todo_list.php` in my browser, I got ![todo list screenshot](/assets/images/san-juan-mountains.jpg "San Juan Mountains")
+- When I entered `http://my_ip_address/todo_list.php` in my browser, I got ![todo list screenshot](https://github.com/Venustrapflyyy/AWS/blob/main/todo.png)
