@@ -9,5 +9,33 @@
 - Once I logged into the instance, I ran `sudo apt update`, `sudo apt-get update` and `sudo apt upgrade` to update the package cache, and upgrade packages to the new version. 
 - I ran `sudo apt install apache2 -y` to install apache. 
 - On my browser, I typed in `http://18.133.230.100` in got the default apache page. 
-- To install SQL, I ran `sudo apt install mysql-server -y`, after which I ran this `sudo mysql_secure_installation` command to sequre the installation and followed the prompt. 
-- I created the 
+- To install SQL, I ran `sudo apt install mysql-server -y`, after which I ran this `sudo mysql_secure_installation` command to sequre the installation and followed the prompt including creating password for my root admin. 
+- I created a new user called zainab with the command `CREATE USER 'zainab'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';`, then granted this user all permissions on all databases using `GRANT ALL PRIVILEGES ON *.* TO 'sammy'@'localhost' WITH GRANT OPTION;`. 
+- I ran the `FLUSH PRIVILEGES;` command to free up any memory that the server cached as a result of the preceding CREATE USER and GRANT statements. 
+- I then ran `sudo apt install php libapache2-mod-php php-mysql` to install PHP and its dependencies. 
+- I logged into MySQL as zainab by running `mysql -u zainab -p`, then I created a database called "example_database" with `CREATE DATABASE example_database;`. I thereafter created a table in the database with 
+```CREATE TABLE example_database.todo_list (
+	item_id INT AUTO_INCREMENT,
+	content VARCHAR(255),
+	PRIMARY KEY(item_id)
+);```
+- Then I inserted a few rows of content inside the table by running `INSERT INTO example_database.todo_list (content) VALUES ("My first important item");`, `INSERT INTO example_database.todo_list (content) VALUES ("My second important item");` etc. To see the conent of my table, I ran `SELECT * FROM example_database.todo_list;`, after which I exited the MySQL console. 
+- I also created a PHP script by running `nano /var/www/html/todo_list.php`, this contained 
+```<?php
+$user = "zainab";
+$password = "******";
+$database = "example_database";
+$table = "todo_list";
+
+try {
+  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  echo "<h2>TODO</h2><ol>"; 
+  foreach($db->query("SELECT content FROM $table") as $row) {
+    echo "<li>" . $row['content'] . "</li>";
+  }
+  echo "</ol>";
+} catch (PDOException $e) {
+    print "Error!: " . $e->getMessage() . "<br/>";
+    die();
+}```
+- When I entered `http://my_ip_address/todo_list.php` in my browser, I got ![todo list screenshot](/assets/images/san-juan-mountains.jpg "San Juan Mountains")
