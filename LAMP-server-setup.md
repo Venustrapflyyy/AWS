@@ -14,14 +14,17 @@
 - I ran the `FLUSH PRIVILEGES;` command to free up any memory that the server cached as a result of the preceding CREATE USER and GRANT statements. 
 - I then ran `sudo apt install php libapache2-mod-php php-mysql` to install PHP and its dependencies. 
 - I logged into MySQL as zainab by running `mysql -u zainab -p`, then I created a database called "example_database" with `CREATE DATABASE example_database;`. I thereafter created a table in the database with 
-```CREATE TABLE example_database.todo_list (
+```
+CREATE TABLE example_database.todo_list (
 	item_id INT AUTO_INCREMENT,
 	content VARCHAR(255),
 	PRIMARY KEY(item_id)
-);```
+);
+```
 - Then I inserted a few rows of content inside the table by running `INSERT INTO example_database.todo_list (content) VALUES ("My first important item");`, `INSERT INTO example_database.todo_list (content) VALUES ("My second important item");` etc. To see the conent of my table, I ran `SELECT * FROM example_database.todo_list;`, after which I exited the MySQL console. 
 - I also created a PHP script by running `nano /var/www/html/todo_list.php`, this contained 
-```<?php
+```
+<?php
 $user = "zainab";
 $password = "******";
 $database = "example_database";
@@ -37,5 +40,6 @@ try {
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
-}```
+}
+```
 - When I entered `http://my_ip_address/todo_list.php` in my browser, I got ![todo list screenshot](/assets/images/san-juan-mountains.jpg "San Juan Mountains")
