@@ -26,5 +26,13 @@ server {
                 include snippets/fastcgi-php.conf;
                 fastcgi_pass unix:/var/run/php/php8.1-fpm.sock; 
 ```
-with every other line commented out. 
+- with every other line commented out. 
+- I then replaced the `index.nginx-debian.html` and `index.html` files in` /var/www/html` with and `index.php` file which contained; 
+```
+<?php
+$hostname = gethostname();
+echo $hostname;
+?>
+```
+- This made my server display its hostname whenever its public IP address is entered into a browser. 
 - 
