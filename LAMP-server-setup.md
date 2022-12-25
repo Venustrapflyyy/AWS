@@ -42,4 +42,6 @@ try {
     die();
 }
 ```
-- When I entered `http://my_ip_address/todo_list.php` in my browser, I got ![todo list screenshot](https://github.com/Venustrapflyyy/AWS/blob/main/todo.png)
+- When I entered `http://my_ip_address/todo_list.php` in my browser, I got this ![todo list screenshot](https://github.com/Venustrapflyyy/AWS/blob/main/todo.png) 
+- To link a domain name to this server, I went on namecheap where I already had a domain name 'zainabakinlawon.me', then I created an A record which was routed to the IP address of my server. 
+- To secure this domain name, I typed `sudo certbot --apache` to get an SSL certificate, answered yes to the prompt and typed in 'zainabakinlawon.me' as the domain name I wanted on my certificate. The cert was deployed to `/etc/apache2/sites-available/000-default-le-ssl.conf`. his enabled https on 'zainabakinlawon.me'
