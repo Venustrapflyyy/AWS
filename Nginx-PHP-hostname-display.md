@@ -35,4 +35,7 @@ echo $hostname;
 ?>
 ```
 - This made my server display its hostname whenever its public IP address is entered into a browser. 
-- 
+- To attach a domain name to my load balancer, I registered 'zainabakinlawon.co.uk' on Route53, after which I created two A records pointing 'zainabakinlawon.co.uk' and 'www.zainabakinlawon.co.uk' to the load balancer fronting my instances, such that both names lead to my load balancer and subsequently, my servers. 
+- To secure the domain name, I purchased a certificate on certificate manager (in the same region my instances were hosted in). The certificate was linked to 'zainabakinlawon.co.uk' and it was verified via DNS. 
+- I then returned to my load balancer, added an HTTPS listener on port 443, using this certificate. This allowed me to access my server on `https://zainabakinlawon.co.uk`. 
+- Lastly, I editted the http listener on my load balancer, making it redirect requests to the secure https listener. 
