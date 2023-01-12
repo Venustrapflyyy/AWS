@@ -25,7 +25,12 @@
 - To log into the private instances, I ran `ssh -i "my-keypair.pem" ubuntu@10.0.3.247` and `ssh -i "my-keypair.pem" ubuntu@10.0.3.120` separately, to log into the individual instances. 
 - In the private instances, to confirm that I had internet access, I ran `curl http://www.dr-chuck.com/page1.htm` and got a response of 
 ```
-
+<h1>The First Page</h1>
+<p>
+If you like, you can switch to the
+<a href="http://www.dr-chuck.com/page2.htm">
+Second Page</a>.
+</p>
 ```
 - I updated my apt repository by running `sudo apt update`. 
 - Then I installed Nginx by running `sudo apt install Nginx`.
