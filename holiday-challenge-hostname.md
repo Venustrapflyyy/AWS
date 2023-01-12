@@ -17,5 +17,10 @@
 
 ![private route table]()
 
-- I launched two instances in the privates subnets A and B. They did not have a public IP address, only a private IP address of `10.0.3.247` and `10.0.3.120` respectively. The security group for these instances allowed SSH traffic from the CIDR block of public subnet A (`10.0.0.0/24`). These private instances could not be accessed directly over the internet so I;
-- launched an instance in public subnet A, to serve as a jumpbox, through which my private instances can be accessed. the security group of this instance allowed SSH and all traffic from the internet
+- I launched two instances in the privates subnets A and B. They did not have a public IP address, only a private IP address of `10.0.3.247` and `10.0.3.120` respectively. The security group for these instances allowed SSH traffic from the CIDR block of public subnet A (`10.0.0.0/24`), allowed all traffic from the security group of the public subnet and allowed all traffic from the security group of the NAT instance. 
+. These private instances could not be accessed directly over the internet so I;
+- launched an instance in public subnet A, to serve as a jumpbox, through which my private instances can be accessed. the security group of this instance allowed SSH and all traffic from the internet. 
+- To SSH into my private instances, I first SSH-ed into my public instance using `ssh -i "my-keypair.pem" ubuntu@x.x.x.x`. using the private key on my vagrant machine to authenticate the public key on the instance. 
+- I then created a file on the public instance with the name `my-keypair.pem`, containing the private key to authenticate the public key contained in the instance. The name of the private key file is `my-keypair.pem`. 
+- To log into the private instances, I ran `ssh -i "my-keypair.pem" ubuntu@10.0.3.247` and `ssh -i "my-keypair.pem" ubuntu@10.0.3.120` separately, to log into the individual instances. 
+- 
