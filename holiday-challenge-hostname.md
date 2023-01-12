@@ -26,7 +26,8 @@
 - In the private instances, to confirm that I had internet access, I ran `curl http://www.dr-chuck.com/page1.htm` and got a response of 
 ```
 
-```I updated my apt repository by running `sudo apt update`. 
+```
+- I updated my apt repository by running `sudo apt update`. 
 - Then I installed Nginx by running `sudo apt install Nginx`.
 - I also installed php.fpm by running `sudo apt install php.fpm`. 
 - I ran `sudo systemctl enable Nginx` to allow my Nginx service to restart everytime I reboot my instance. 
