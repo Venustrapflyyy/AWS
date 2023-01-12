@@ -58,3 +58,7 @@ $hostname = gethostname();
 echo $hostname;
 ?>
 ```
+- I ran `sudo systemctl restart nginx` 
+- I created an internet facing load balancer in this VPC, attaching it to the availability zones that had public subnets (AZ A and B), associating it with the public subnet security group that allows SSH and all traffic from the internet. 
+- I also created a target group that contained both private instances from availability zones A and B, this target group was thereafter attached to the load balancer. 
+- I rebooted my machine, and on entering the 
