@@ -23,4 +23,37 @@
 - To SSH into my private instances, I first SSH-ed into my public instance using `ssh -i "my-keypair.pem" ubuntu@x.x.x.x`. using the private key on my vagrant machine to authenticate the public key on the instance. 
 - I then created a file on the public instance with the name `my-keypair.pem`, containing the private key to authenticate the public key contained in the instance. The name of the private key file is `my-keypair.pem`. 
 - To log into the private instances, I ran `ssh -i "my-keypair.pem" ubuntu@10.0.3.247` and `ssh -i "my-keypair.pem" ubuntu@10.0.3.120` separately, to log into the individual instances. 
-- 
+- In the private instances, to confirm that I had internet access, I ran `curl http://www.dr-chuck.com/page1.htm` and got a response of 
+```
+
+```I updated my apt repository by running `sudo apt update`. 
+- Then I installed Nginx by running `sudo apt install Nginx`.
+- I also installed php.fpm by running `sudo apt install php.fpm`. 
+- I ran `sudo systemctl enable Nginx` to allow my Nginx service to restart everytime I reboot my instance. 
+- I ran `sudo systemctl enable php.fpm` to allow my php.8.1fpm service to restart everytime I reboot my instance. 
+- I then ran `sudo nano /etc/nginx/sites-available/default` to edit my Nginx configuration file, which I made to contain 
+```
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.php index.html;
+        server_name _;
+        location / {
+                try_files $uri $uri/ =404;
+        }
+        location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+        }
+}
+``` 
+- with every other line commented out. 
+- I ran `sudo nginx -t` and got a response saying that my syntax test was successful. 
+- Then I ran `cd  /var/www/html` after which I  created a php file by running `sudo nano index.php`, with its content; 
+```
+<?php
+$hostname = gethostname();
+echo $hostname;
+?>
+```
