@@ -14,5 +14,8 @@
 - I created a public route table that was routed to the internet gateway in addition to being defaultly routed to the local network. Then I attached this route table to public subnets A and B. 
 - I launched an instance in public subnet A, which has a security group that allows `http, https and all ICMP/IPv4` from both private instances A and B's CIDR blocks (`10.0.1.0/16` and `10.0.3.0/16`). This instance performs the role of network address translation for the instances in my private subnets, allowing them access to the internet.
 - I also created a private route table that is defaultly routed to the local network and to the internet via the NAT instance. Then I attached this route table to private subnets A and B. 
+
 ![private route table]()
-- 
+
+- I launched two instances in the privates subnets A and B. They did not have a public IP address, only a private IP address of `10.0.3.247` and `10.0.3.120` respectively. The security group for these instances allowed SSH traffic from the CIDR block of public subnet A (`10.0.0.0/24`). These private instances could not be accessed directly over the internet so I;
+- launched an instance in public subnet A, to serve as a jumpbox, through which my private instances can be accessed. the security group of this instance allowed SSH and all traffic from the internet
