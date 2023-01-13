@@ -36,7 +36,7 @@ Second Page</a>.
 - Then I installed Nginx by running `sudo apt install Nginx`.
 - I also installed php.fpm by running `sudo apt install php.fpm`. 
 - I ran `sudo systemctl enable Nginx` to allow my Nginx service to restart everytime I reboot my instance. 
-- I ran `sudo systemctl enable php.fpm` to allow my php.8.1fpm service to restart everytime I reboot my instance. 
+- I ran `sudo systemctl enable php.8.1fpm` to allow my php.fpm service to restart everytime I reboot my instance. 
 - I then ran `sudo nano /etc/nginx/sites-available/default` to edit my Nginx configuration file, which I made to contain 
 ```
 server {
