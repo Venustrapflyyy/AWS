@@ -11,7 +11,7 @@
 - I then configure AWS CLI to hold my access key and secret access key by running `aws configure`, after which i entered the respective keys as prompted. 
 - I also installed Ansible by running `sudo apt-add-repository ppa:ansible/ansible && sudo apt install ansible` to install ansible. 
 - I created a directory called `terraform` and in this directory, I created a `main.tf` and a `variable.tf` file, which contains my terraform structure and related variables. 
-main.tf
+- main.tf
 ```
 terraform {
   required_providers {
@@ -177,7 +177,7 @@ resource "aws_route53_record" "terraform-test" {
 ```
 
 
-variable.tf
+- variable.tf
 
 ```
 variable "keypair" {
