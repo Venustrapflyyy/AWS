@@ -4,12 +4,12 @@
 
 ## Steps 
 - I logged into my vagrant machine, which had the private key of my keypair 
-- I then installed terraform on my machine by running `$ wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg` `$ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list` 
-`$ sudo apt update && sudo apt install terraform`. 
+- I ran `sudo apt update` `sudo apt install -y net-tools` `sudo apt install -y git` `sudo apt install -y unzip` to update and install necessary packages. 
+- I then installed terraform on my machine by running `$ wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg` `$ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list` and `$ sudo apt update && sudo apt install terraform -y`. 
 - To confirm the installation, I checked the version of terraform running by running `terraform -v` 
-- I also installed AWS CLI by running `sudo apt update && sudo apt dist-upgrade -y` and `sudo apt install awscli`. 
+- I also installed AWS CLI for linux 64bit OS by running `curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"` `unzip awscliv2.zip` `sudo ./aws/install`  
 - I then configure AWS CLI to hold my access key and secret access key by running `aws configure`, after which i entered the respective keys as prompted. 
-- I also installed Ansible by running `sudo apt-add-repository ppa:ansible/ansible && sudo apt install ansible` to install ansible. 
+- I also installed Ansible by running `sudo apt update` `sudo apt install software-properties-common` `sudo add-apt-repository --yes --update ppa:ansible/ansible` `sudo apt install ansible -y`. 
 - I created a directory called `terraform` and in this directory, I created a `main.tf` and a `variable.tf` file, which contains my terraform structure and related variables. 
 - main.tf
 ```
