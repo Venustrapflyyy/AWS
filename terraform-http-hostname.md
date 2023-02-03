@@ -272,5 +272,5 @@ host_key_checking = false
 ```
 
 
-- In my `terraform` folder, I ran `terraform init`, `terraform plan -var "keypair=my-keypair"` and `terraform apply -var "keypair=my-keypair"` to spin up my infrastructure. 
+- In my `terraform` folder, I ran `terraform init`, `terraform plan -var "keypair=my-keypair"` and `terraform apply -var "keypair=my-keypair"` to spin up my infrastructure (Note: my terraform code had created a directory in my ansible folder called `host-inventory` which contained the IP address of my instances). 
 - Then I ran `ansible-playbook playbook.yml -i inventory.yml`, in my `ansible` folder, to configure my infrastructure. 
